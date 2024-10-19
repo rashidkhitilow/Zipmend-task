@@ -47,6 +47,11 @@
             <hr style="border: 1px solid #9E9E9E; color: #9E9E9E" />
           </v-col>
         </v-row>
+        <v-row dense class="pb-6">
+          <v-col cols="12">
+            <h3>Route details</h3>
+          </v-col>
+      </v-row>
         <route-details :distance="distance" :driving-time="drivingTime" />
       </v-form>
     </v-container>
