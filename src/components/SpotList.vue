@@ -14,16 +14,16 @@
         <v-col cols="9" class="position-relative">
           <v-autocomplete
             v-model="spot.address"
-            :items="autocompleteItems"
             label="Address"
             dense
-            @focus="fetchAutocomplete(spot.address, index)"
+            outlined
+            :items="spot.autocompleteItems"
+            :item-text="'description'"
             :loading="loadingAutocomplete"
-          >
-            <template v-slot:item="{ item }">
-              <div>{{ item.description }}</div>
-            </template>
-          </v-autocomplete>
+            hide-no-data
+            hide-selected
+            @update:search-input="onAddressChange($event, index)"
+          />
 
           <v-img
             v-if="index > 0"
@@ -42,13 +42,14 @@
 </template>
 
 <script>
+import debounce from 'lodash/debounce';
+
 export default {
   name: 'SpotList',
   props: {
     title: String,
     spots: Array,
     countries: Array,
-    autocompleteItems: Array,
     loadingAutocomplete: Boolean,
   },
   methods: {
@@ -58,9 +59,11 @@ export default {
     removeSpot(index) {
       this.$emit('removeSpot', index);
     },
-    fetchAutocomplete(address, index) {
-      this.$emit('fetchAutocomplete', address, index);
-    },
+    onAddressChange: debounce(function (address, index) {
+      if (address) {
+        this.$emit('fetchAutocomplete', { address, index, type: this.title.toLowerCase() === 'loading' ? 'loadingSpots' : 'unloadingSpots' });
+      }
+    }, 300),
   },
 };
 </script>
