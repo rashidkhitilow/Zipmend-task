@@ -2,7 +2,7 @@
      <v-app-bar app class="header white">
       <v-container fluid class="mt-3">
         <v-row align="center" justify="space-between" class="header-inner">
-          <v-col cols="auto">
+          <v-col cols="auto" class="logo-part">
             <v-img
               alt="Zipmend Logo"
               class="logo"
@@ -63,5 +63,17 @@
 .right-content {
   display: flex;
   align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    height: 80px !important;
+  }
+  .right-content{
+    display: none !important; 
+  }
+  .logo-part {
+    padding-top: 20px;
+  }
 }
 </style>

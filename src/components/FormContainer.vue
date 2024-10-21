@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="main-container">
     <v-row class="mt-0">
-      <v-col class="side-panel" cols="4">
+      <v-col class="side-panel" cols="12" md="4">
         <v-container class="side-panel-content">
           <v-container class="route-config" fluid>
             <v-form>
@@ -56,7 +56,7 @@
         </v-container>
       </v-col>
 
-      <v-col class="map-container" cols="8" style="padding: 0;">
+      <v-col class="map-container" cols="12" md="8" style="padding: 0;">
         <div class="map-placeholder">
           <route-map :routeCoordinates="routeCoordinates" :loadingSpots="loadingSpots"
             :unloadingSpots="unloadingSpots" />
@@ -268,5 +268,20 @@ export default {
 .primary-btn:disabled {
   background-color: #ccc !important;
   cursor: not-allowed;
+}
+
+@media only screen and (max-width: 600px) {
+  .side-panel {
+    padding: 12px 8px;
+    height: 400px;
+  }
+
+  .main-container {
+    flex-direction: column;
+  }
+
+  .map-container {
+    height: 300px;
+  }
 }
 </style>
