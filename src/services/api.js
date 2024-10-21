@@ -26,7 +26,7 @@ export const calculateRoute = async (waypoints, avoidCountries = []) => {
 
 export const fetchPlaceSuggestions = async (input, countryCode) => {
   try {
-    const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/autocomplete', {
+    const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/autocomplete/json', {
       params: {
         input: input,
         components: `country:${countryCode}`,
@@ -42,7 +42,7 @@ export const fetchPlaceSuggestions = async (input, countryCode) => {
 
 export const getCoordinatesForPlaceId = async (placeId) => {
   try {
-    const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/details', {
+    const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/details/json', {
       params: {
         placeid: placeId,
         key: API_KEY
