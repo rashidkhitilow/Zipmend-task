@@ -1,8 +1,6 @@
 import axios from 'axios';
-const API_KEY = process.env.VUE_APP_GOOGLE_PLACES_API_KEY;
+
 const ORS_API_BASE_URL = 'https://maps.zipmend.com/ors/v2/directions/driving-hgv';
-const GOOGLE_PLACES_API_BASE_URL = 'https://maps.googleapis.com/maps/api/place';
-// const GOOGLE_PLACES_API_BASE_URL_LOCAL = 'http://localhost:8081/api/place';
 
 export const calculateRoute = async (waypoints, avoidCountries = []) => {
   try {
@@ -24,13 +22,15 @@ export const calculateRoute = async (waypoints, avoidCountries = []) => {
   }
 };
 
+// const GOOGLE_PLACES_API_BASE_URL = 'http://localhost:8081/api/place';
+const GOOGLE_PLACES_API_BASE_URL = '/api/place';
+
 export const fetchPlaceSuggestions = async (input, countryCode) => {
   try {
-    const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/autocomplete/json', {
+    const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/autocomplete', {
       params: {
         input: input,
-        components: `country:${countryCode}`,
-        key: API_KEY
+        components: `country:${countryCode}`
       }
     });    
     return response.data.predictions;
@@ -42,10 +42,9 @@ export const fetchPlaceSuggestions = async (input, countryCode) => {
 
 export const getCoordinatesForPlaceId = async (placeId) => {
   try {
-    const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/details/json', {
+    const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/details', {
       params: {
-        placeid: placeId,
-        key: API_KEY
+        placeid: placeId
       },
     });
 
