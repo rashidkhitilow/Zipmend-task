@@ -24,7 +24,6 @@ export const calculateRoute = async (waypoints, avoidCountries = []) => {
 
 const GOOGLE_PLACES_API_BASE_URL = 'https://maps.googleapis.com/maps/api/place';
 // const GOOGLE_PLACES_API_BASE_URL_LOCAL = 'http://localhost:8081/api/place';
-
 export const fetchPlaceSuggestions = async (input, countryCode) => {
   try {
     const response = await axios.get(GOOGLE_PLACES_API_BASE_URL+'/autocomplete', {
