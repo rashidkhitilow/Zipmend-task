@@ -11,6 +11,7 @@ app.use(cors({
 }));
 
 const GOOGLE_PLACES_API_URL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';
+const GOOGLE_PLACES_API_URL2 = 'https://maps.googleapis.com/maps/api/place/details/json';
 const API_KEY = process.env.VUE_APP_GOOGLE_PLACES_API_KEY;
 
 app.get('/api/place/autocomplete', async (req, res) => {
@@ -19,6 +20,21 @@ app.get('/api/place/autocomplete', async (req, res) => {
       params: {
         input: req.query.input,
         components: req.query.components,
+        key: API_KEY
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching data from Google Places API:', error.message);
+    res.status(500).send('Error fetching data from Google Places API');
+  }
+});
+
+app.get('/api/place/details', async (req, res) => {
+  try {
+    const response = await axios.get(GOOGLE_PLACES_API_URL2, {
+      params: {
+        placeid: req.query.placeid,
         key: API_KEY
       }
     });
