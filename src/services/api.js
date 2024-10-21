@@ -22,8 +22,8 @@ export const calculateRoute = async (waypoints, avoidCountries = []) => {
   }
 };
 
-const GOOGLE_PLACES_API_BASE_URL = 'http://localhost:8081/api/place';
-// const GOOGLE_PLACES_API_BASE_URL = '/api/place';
+// const GOOGLE_PLACES_API_BASE_URL = 'http://localhost:8081/api/place';
+const GOOGLE_PLACES_API_BASE_URL = '/api/place';
 
 export const fetchPlaceSuggestions = async (input, countryCode) => {
   try {
