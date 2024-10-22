@@ -115,6 +115,7 @@ export default {
       let val = this.loadingSpots[index].placeId ? true : false
       this.loadingSpots.splice(index, 1);
       if(val) this.onCalculateRoute();
+      this.loading = false;
     },
     addUnloadingSpot() {
       this.unloadingSpots.push({ country: 74, address: '', placeId: '', autocompleteItems: [], coordinates: [] });
@@ -124,6 +125,7 @@ export default {
       let val = this.unloadingSpots[index].placeId ? true : false
       this.unloadingSpots.splice(index, 1);
       if(val) this.onCalculateRoute();
+      this.loading = false;
     },
     getCountryCode(countryId) {
       const country = countries.find(item => item.countryId === countryId);
