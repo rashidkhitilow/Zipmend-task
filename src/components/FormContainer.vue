@@ -273,7 +273,7 @@ export default {
 @media only screen and (max-width: 600px) {
   .side-panel {
     padding: 12px 8px;
-    height: 400px;
+    height: 300px;
   }
 
   .main-container {
@@ -281,7 +281,7 @@ export default {
   }
 
   .map-container {
-    height: 300px;
+    height: 500px;
   }
 }
 </style>
