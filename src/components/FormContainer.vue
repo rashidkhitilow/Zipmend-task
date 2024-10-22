@@ -112,16 +112,18 @@ export default {
     },
     removeLoadingSpot(index) {
       this.loading = true;
+      let val = this.loadingSpots[index].placeId ? true : false
       this.loadingSpots.splice(index, 1);
-      this.onCalculateRoute();
+      if(val) this.onCalculateRoute();
     },
     addUnloadingSpot() {
       this.unloadingSpots.push({ country: 74, address: '', placeId: '', autocompleteItems: [], coordinates: [] });
     },
     removeUnloadingSpot(index) {
       this.loading = true;
+      let val = this.unloadingSpots[index].placeId ? true : false
       this.unloadingSpots.splice(index, 1);
-      this.onCalculateRoute();
+      if(val) this.onCalculateRoute();
     },
     getCountryCode(countryId) {
       const country = countries.find(item => item.countryId === countryId);
