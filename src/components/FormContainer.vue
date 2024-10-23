@@ -46,7 +46,7 @@
                     <h3>Route details</h3>
                   </v-col>
                 </v-row>
-                <route-details :center="center" :distance="distance" :driving-time="drivingTime" />
+                <route-details :distance="distance" :driving-time="drivingTime" />
               </template>
             </v-form>
             <v-overlay :value="loading" absolute class="align-center justify-center" style="z-index:999;">
@@ -58,7 +58,7 @@
 
       <v-col class="map-container" cols="12" md="8" style="padding: 0;">
         <div class="map-placeholder">
-          <route-map :routeCoordinates="routeCoordinates" :loadingSpots="loadingSpots"
+          <route-map :center="center" :routeCoordinates="routeCoordinates" :loadingSpots="loadingSpots"
             :unloadingSpots="unloadingSpots" />
         </div>
       </v-col>
