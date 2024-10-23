@@ -178,8 +178,10 @@ export default {
 
         if (type === 'loadingSpots') {
           this.loadingSpots[index].autocompleteItems = items;
+          this.loadingSpots[index].address = address;
         } else {
           this.unloadingSpots[index].autocompleteItems = items;
+          this.loadingSpots[index].address = address;
         }
       } catch (error) {
         console.error('Error fetching autocomplete suggestions:', error);
@@ -196,6 +198,7 @@ export default {
 
     async onAddressSelect({ index, placeId, type }) {
       if (placeId) {
+        this.routeCoordinates = []
         const coordinates = await getCoordinatesForPlaceId(placeId);
         if (type === 'loadingSpots') {
           this.$set(this.loadingSpots, index, { ...this.loadingSpots[index], placeId, coordinates });
