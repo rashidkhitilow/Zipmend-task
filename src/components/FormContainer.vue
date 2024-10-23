@@ -46,7 +46,7 @@
                     <h3>Route details</h3>
                   </v-col>
                 </v-row>
-                <route-details :distance="distance" :driving-time="drivingTime" />
+                <route-details :center="center" :distance="distance" :driving-time="drivingTime" />
               </template>
             </v-form>
             <v-overlay :value="loading" absolute class="align-center justify-center" style="z-index:999;">
@@ -104,6 +104,7 @@ export default {
       loadingSpotsAutocompleteItems: [],
       unloadingSpotsAutocompleteItems: [],
       loading: false,
+      center:  [52.5200066, 13.404954]
     };
   },
   methods: {
@@ -151,6 +152,12 @@ export default {
 
         this.distance = (route.summary.distance / 1000).toFixed(2);
         this.drivingTime = this.formatDuration(route.summary.duration);
+
+        if (waypoints.length > 0) {
+          const midIndex = Math.floor(waypoints.length / 2);
+          this.center = waypoints[midIndex];
+        }
+
       } catch (error) {
         console.error('Error calculating route:', error);
       } finally {
