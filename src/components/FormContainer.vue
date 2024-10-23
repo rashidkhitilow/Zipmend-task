@@ -178,10 +178,8 @@ export default {
 
         if (type === 'loadingSpots') {
           this.loadingSpots[index].autocompleteItems = items;
-          this.loadingSpots[index].address = address;
         } else {
           this.unloadingSpots[index].autocompleteItems = items;
-          this.loadingSpots[index].address = address;
         }
       } catch (error) {
         console.error('Error fetching autocomplete suggestions:', error);
